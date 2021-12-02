@@ -29,9 +29,7 @@ app.post("/create", (req, res) => {
 //----- Get all tasks -----//
 app.get('/todos', (req, res) => {
   db.query("SELECT * FROM todos", (err, result) => {
-    (err, result) => {
-      (err) ? console.log(err) : res.send(result)
-    }
+    (err) ? console.log(err) : res.send(result)
   })
 })
 
