@@ -20,13 +20,22 @@ app.post("/create", (req, res) => {
 
   db.query("INSERT INTO todos (task, completed) VALUES(?, ?)",
     [task, completed],
-    (err) ? console.log(err) : res.send("Values Inserted")
+    (err, result) => {
+      (err) ? console.log(err) : res.send("Values Inserted")
+    }
   )
 })
 
 //----- Get all tasks -----//
-app.get('/todos', (req, res) =>{
+app.get('/todos', (req, res) => {
   db.query("SELECT * FROM todos", (err, result) => {
-    (err) ? console.log(err) : res.send(result)
+    (err, result) => {
+      (err) ? console.log(err) : res.send(result)
+    }
   })
 })
+
+
+app.listen(3001, () => {
+  console.log("Server is running on port 3001");
+});
