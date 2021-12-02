@@ -20,12 +20,13 @@ app.post("/create", (req, res) => {
 
   db.query("INSERT INTO todos (task, completed) VALUES(?, ?)",
     [task, completed],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("Values Inserted");
-      }
-    }
+    (err) ? console.log(err) : res.send("Values Inserted")
   )
+})
+
+//----- Get all tasks -----//
+app.get('/todos', (req, res) =>{
+  db.query("SELECT * FROM todos", (err, result) => {
+    (err) ? console.log(err) : res.send(result)
+  })
 })
