@@ -42,6 +42,15 @@ app.post('/delete', (req, res) => {
   })
 })
 
+//----- Update task -----//
+app.post('/update', (req, res) => {
+  const completedStatus = req.body.completed
+  const taskID = req.body.id
+  db.query(`UPDATE todos SET completed=${completedStatus} WHERE id=${taskID}`, (err, result) => {
+    (err) ? console.log(err) : res.send(result)
+  })
+})
+
 
 app.listen(3001, () => {
   console.log("Server is running on port 3001");
