@@ -1,12 +1,12 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from '@mui/material/Button';
 import axios from "axios"
-import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { makeStyles } from '@mui/styles';
 import Typography from '@mui/material/Typography';
+import AddTaskModal from './AddTask'
 
 const useStyles = makeStyles({
 
@@ -14,12 +14,13 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
-  const [task, setTask] = useState("")
+  // const [task, setTask] = useState("")
   const [completed, setCompleted] = useState(false)
 
   const [taskList, setTaskList] = useState([])
+
   //----- Add new task -----//
-  const addTask = () => {
+  const addTask = (task) => {
     axios.post("http://localhost:3001/create", {
       task: task,
       completed: completed
@@ -48,13 +49,7 @@ function App() {
 
       <div className="info">
         <label>New Task:</label>
-        <TextField
-          onChange={(event) => { setTask(event.target.value); }}
-          label="New Task"
-          variant="outlined"
-        />
         <Checkbox onClick={() => { setCompleted(completed => !completed) }} />
-        <Button onClick={addTask} variant="contained">Add Task</Button>
         <Button onClick={getTasks} variant="contained">Show all tasks</Button>
       </div>
 
@@ -66,6 +61,11 @@ function App() {
           <DeleteIcon onClick={() => deleteTask(val.id)} />
         </div>
       })}
+
+      {/* Add Task Button */}
+      <div>
+        <AddTaskModal addTask={addTask} />
+      </div>
 
     </div>
   );
