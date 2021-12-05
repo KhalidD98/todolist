@@ -48,7 +48,10 @@ export default function TaskList({ editTask, deleteTask, updateCompleteStatus, l
                     ? <CheckBoxIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />
                     : <CheckBoxOutlineBlankIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />
                 }
-                <Typography className={classes.taskText}>{val.task}</Typography>
+                {val.completed
+                    ? <Typography style={{ textDecorationColor: '#C8C8C8', textDecoration: 'line-through', color: '#D3D3D3' }} className={classes.taskText}>{val.task}</Typography>
+                    : <Typography className={classes.taskText}>{val.task}</Typography>
+                }
                 <div className={classes.editIcon}>
                     <EditTask editTask={editTask} id={val.id} />
                 </div>
