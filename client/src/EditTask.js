@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import { makeStyles } from '@mui/styles'
+import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import { makeStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { indigo } from '@mui/material/colors';
 
 const style = { // Style of modal
     position: 'absolute',
@@ -21,28 +19,24 @@ const style = { // Style of modal
 };
 
 const useStyles = makeStyles({
-    addTaskButton: {
-        cursor: 'pointer',
-    }
 });
 
-export default function AddTask({ addTask }) {
+export default function EditTask({ editTask, id }) {
     const classes = useStyles();
     const [task, setTask] = useState("")
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => {
         if (task !== "") {
-            addTask(task)
+            editTask(id, task)
         }
         setTask("")
         setOpen(false)
     };
 
-
     return (
         <div>
-            <AddCircleIcon className={classes.addTaskButton} onClick={handleOpen} sx={{ fontSize: '5rem', color: indigo[400] }} />
+            <EditIcon onClick={handleOpen} className={classes.editIcon} />
             <Modal
                 keepMounted
                 open={open}
@@ -53,7 +47,7 @@ export default function AddTask({ addTask }) {
                 <Box sx={style}>
                     <TextField
                         onChange={(event) => { setTask(event.target.value); }}
-                        label="New Task"
+                        label="Update Task"
                         variant="outlined"
                         value={task}
                     />

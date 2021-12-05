@@ -51,6 +51,15 @@ app.post('/update', (req, res) => {
   })
 })
 
+//----- Edit task -----//
+app.post('/edit', (req, res) => {
+  const newTask = req.body.task
+  const taskID = req.body.id
+  db.query(`UPDATE todos SET task='${newTask}' WHERE id=${taskID}`, (err, result) => {
+    (err) ? console.log(err) : res.send(result)
+  })
+})
+
 
 app.listen(3001, () => {
   console.log("Server is running on port 3001");

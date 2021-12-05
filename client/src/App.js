@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import axios from "axios"
 import Checkbox from '@mui/material/Checkbox';
@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import AddTaskModal from './AddTask'
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import EditIcon from '@mui/icons-material/Edit';
+import EditTask from './EditTask'
 
 const useStyles = makeStyles({
   addTaskModal: {
@@ -26,23 +28,38 @@ const useStyles = makeStyles({
     backgroundColor: '#5c6bc0',
     color: 'white',
     width: '60vw',
-    height: '5rem',
+    height: '4.5rem',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    borderRadius: '5px',
-    margin: '1rem',
+    borderRadius: '100px',
+    paddingLeft: '2rem',
+    marginTop: '1.4rem',
   },
   taskText: {
     paddingRight: '1rem',
+    paddingLeft: '2rem',
+  },
+  editIcon: {
+    paddingRight: '1rem',
     paddingLeft: '1rem',
+  },
+  title: {
+    // marginLeft: '10rem',
+    width: '60vw',
+    fontSize: '3.4rem',
+    fontFamily: 'Roboto, sans-serif',
   }
 });
 
 function App() {
   const classes = useStyles();
   const [taskList, setTaskList] = useState([])
+
+  useEffect(() => {
+    getTasks()
+  }, []);
 
   //----- Add new task -----//
   const addTask = (task) => {
@@ -58,7 +75,6 @@ function App() {
   // TODO: Move to a useEffect for initial startup
   const getTasks = () => {
     axios.get("http://localhost:3001/todos").then((response) => {
-      console.log(response.data)
       setTaskList(response.data)
     })
   }
@@ -79,12 +95,22 @@ function App() {
     axios.post(`http://localhost:3001/update`, { id: id, completed: !completed })
   }
 
+  //----- editTask -----//
+  const editTask = (id, task) => {
+    // Update task text
+    const newState = taskList.map(obj =>
+      obj.id === id ? { ...obj, task: task } : obj
+    );
+    setTaskList(newState)
+    axios.post(`http://localhost:3001/edit`, { task: task, id: id })
+  }
+
   return (
     <div>
 
-      <div>
-        <Button onClick={getTasks} variant="contained">Show all tasks</Button>
-      </div>
+      <h2 className={classes.title}>
+        KD's ToDo list
+      </h2>
 
       {/*----- List of Todos -----*/}
       <div className={classes.taskContainer}>
@@ -95,6 +121,10 @@ function App() {
               : <CheckBoxOutlineBlankIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />
             }
             <Typography className={classes.taskText}>{val.task}</Typography>
+            {/* <EditIcon onClick={() => editTask(val.id, val.task)} className={classes.editIcon} /> */}
+            <div className={classes.editIcon}>
+              <EditTask editTask={editTask} id={val.id} />
+            </div>
             <DeleteIcon onClick={() => deleteTask(val.id)} />
           </div>
         })}
