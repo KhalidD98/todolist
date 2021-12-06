@@ -21,11 +21,50 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    // marginLeft: '10rem',
-    width: '60vw',
-    fontSize: '3.4rem',
-    fontFamily: 'Roboto, sans-serif',
+  searchField: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  circle: {
+    height: '14rem',
+    width: '14rem',
+    zIndex: '-1000',
+    left: '-3rem',
+    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    borderRadius: '50%',
+    position: 'absolute',
+  },
+  circle2: {
+    height: '6rem',
+    width: '6rem',
+    zIndex: '-1000',
+    left: '70%',
+    top: '10%',
+    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    borderRadius: '50%',
+    position: 'absolute',
+  },
+  smallCircle: {
+    height: '2rem',
+    width: '2rem',
+    zIndex: '-1000',
+    left: '40%',
+    top: '64%',
+    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    borderRadius: '50%',
+    position: 'absolute',
+  },
+  smallCircle2: {
+    height: '2rem',
+    width: '2rem',
+    zIndex: '-1000',
+    left: '60%',
+    top: '51%',
+    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    borderRadius: '50%',
+    position: 'absolute',
   }
 });
 
@@ -85,8 +124,6 @@ function App() {
 
   //----- Filter the list -----//
   const filterList = (filterOption) => {
-    console.log(taskList)
-    console.log(filteredList)
     switch (filterOption) {
       case 'completed':
         setFiltered(true)
@@ -106,11 +143,18 @@ function App() {
   return (
     <div>
 
-      <h2 className={classes.title}>
-        KD's ToDo list
-      </h2>
+      <div className={classes.circle}></div>
+      <div className={classes.circle2}></div>
+      <div className={classes.smallCircle}></div>
+      <div className={classes.smallCircle2}></div>
 
-      <TextField onChange={(e) => setSearchTerm(e.target.value)} label="Search for task..." variant="standard" />
+      <div className={classes.searchField}>
+        <TextField
+          onChange={(e) => setSearchTerm(e.target.value)}
+          label="Search for task..."
+          variant="standard"
+        />
+      </div>
 
       {/*----- List of Todos -----*/}
       <div className={classes.taskContainer}>

@@ -7,12 +7,17 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import EditTask from '../EditTask'
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
+import { grey } from '@mui/material/colors';
 
 const useStyles = makeStyles({
     tasks: {
-        backgroundColor: '#5c6bc0',
+        background: 'rgba( 257, 257, 656, 0.23 )',
+        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.33 )',
+        backdropFilter: 'blur( 2px )',
+        webkitBackdropFilter: 'blur( 2px )',
+        borderRadius: '10px',
         color: 'white',
-        width: '60vw',
+        width: '60%',
         height: '4.5rem',
         display: 'flex',
         flexDirection: 'row',
@@ -20,11 +25,16 @@ const useStyles = makeStyles({
         alignItems: 'center',
         borderRadius: '100px',
         paddingLeft: '2rem',
+        paddingRight: '1rem',
         marginTop: '1.4rem',
     },
     taskText: {
         paddingRight: '1rem',
         paddingLeft: '2rem',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        maxWidth: '200px',
     },
     editIcon: {
         paddingRight: '1rem',
@@ -45,7 +55,7 @@ export default function TaskList({ editTask, deleteTask, updateCompleteStatus, l
         }).map((val, key) => {
             return <div className={classes.tasks}>
                 {val.completed
-                    ? <CheckBoxIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />
+                    ? <CheckBoxIcon sx={{ color: grey[300] }} onClick={() => updateCompleteStatus(val.id, val.completed)} />
                     : <CheckBoxOutlineBlankIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />
                 }
                 {val.completed
