@@ -8,13 +8,37 @@ import EditTask from '../EditTask'
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { grey } from '@mui/material/colors';
+import { keyframes } from '@mui/system';
+
+const spin = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const useStyles = makeStyles({
+    "@global": {
+        "@keyframes fadeIn": {
+            "0%": {
+                opacity: 0,
+                transform: "translateX(-5rem)"
+            },
+            "100%": {
+                opacity: 1,
+                transform: "translateX(0)"
+            }
+        }
+    },
     tasks: {
-        background: 'rgba( 257, 257, 656, 0.23 )',
+        background: 'rgba( 257, 257, 656, 0.18 )',
         boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.33 )',
-        backdropFilter: 'blur( 2px )',
-        webkitBackdropFilter: 'blur( 2px )',
+        backdropFilter: 'blur( 7px )',
+        webkitBackdropFilter: 'blur( 7px )',
         borderRadius: '10px',
         color: 'white',
         width: '60%',
@@ -24,9 +48,12 @@ const useStyles = makeStyles({
         justifyContent: 'flex-start',
         alignItems: 'center',
         borderRadius: '100px',
-        paddingLeft: '2rem',
+        paddingLeft: '4rem',
         paddingRight: '1rem',
-        marginTop: '1.4rem',
+        marginTop: '1rem',
+        marginBottom: '0.8rem',
+        flexShrink: '0',
+        animation: 'fadeIn .4s ease-in-out',
     },
     taskText: {
         paddingRight: '1rem',
@@ -53,7 +80,7 @@ export default function TaskList({ editTask, deleteTask, updateCompleteStatus, l
             }
             return null
         }).map((val, key) => {
-            return <div className={classes.tasks}>
+            return <div className={classes.tasks} key={key}>
                 {val.completed
                     ? <CheckBoxIcon sx={{ color: grey[300] }} onClick={() => updateCompleteStatus(val.id, val.completed)} />
                     : <CheckBoxOutlineBlankIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />

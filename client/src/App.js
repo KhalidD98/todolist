@@ -17,15 +17,31 @@ const useStyles = makeStyles({
   },
   taskContainer: {
     display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'center',
+    margin: '0 auto',
+    width: 'auto',
+    height: '100vh',
+    overflow: 'hidden',
+  },
+  taskList: {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
+    height: '80vh',
+    width: '60%',
+    overflow: 'auto',
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    },
   },
   searchField: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: '3rem',
+    marginTop: '1rem',
   },
   circle: {
     height: '14rem',
@@ -42,7 +58,7 @@ const useStyles = makeStyles({
     zIndex: '-1000',
     left: '70%',
     top: '10%',
-    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    backgroundImage: 'linear-gradient(to bottom right, #f64f59, #c471ed)',
     borderRadius: '50%',
     position: 'absolute',
   },
@@ -52,7 +68,7 @@ const useStyles = makeStyles({
     zIndex: '-1000',
     left: '40%',
     top: '64%',
-    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    backgroundImage: 'linear-gradient(to bottom right, #c451ed, #f64e39, #f04e39)',
     borderRadius: '50%',
     position: 'absolute',
   },
@@ -62,10 +78,10 @@ const useStyles = makeStyles({
     zIndex: '-1000',
     left: '60%',
     top: '51%',
-    backgroundImage: 'linear-gradient(to bottom right, #c471ed, #f64f59)',
+    backgroundImage: 'linear-gradient(to top right, #c171ed, #f62f59)',
     borderRadius: '50%',
     position: 'absolute',
-  }
+  },
 });
 
 function App() {
@@ -158,15 +174,16 @@ function App() {
 
       {/*----- List of Todos -----*/}
       <div className={classes.taskContainer}>
-        <FilterMenu filterList={filterList} />
-        <TaskList
-          editTask={editTask}
-          deleteTask={deleteTask}
-          updateCompleteStatus={updateCompleteStatus}
-          list={filtered ? filteredList : taskList}
-          searchTerm={searchTerm}
-        />
-
+        <div className={classes.taskList}>
+          <FilterMenu filterList={filterList} />
+          <TaskList
+            editTask={editTask}
+            deleteTask={deleteTask}
+            updateCompleteStatus={updateCompleteStatus}
+            list={filtered ? filteredList : taskList}
+            searchTerm={searchTerm}
+          />
+        </div>
       </div>
 
       {/* Add Task Button */}
