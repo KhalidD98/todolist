@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
 import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';

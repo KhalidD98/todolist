@@ -1,6 +1,4 @@
 import React from 'react'
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
@@ -8,18 +6,6 @@ import EditTask from '../EditTask'
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { grey } from '@mui/material/colors';
-import { keyframes } from '@mui/system';
-
-const spin = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-200%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 const useStyles = makeStyles({
     "@global": {
@@ -39,7 +25,6 @@ const useStyles = makeStyles({
         boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.33 )',
         backdropFilter: 'blur( 7px )',
         webkitBackdropFilter: 'blur( 7px )',
-        borderRadius: '10px',
         color: 'white',
         width: '60%',
         height: '4.5rem',
@@ -80,7 +65,7 @@ export default function TaskList({ editTask, deleteTask, updateCompleteStatus, l
             }
             return null
         }).map((val, key) => {
-            return <div className={classes.tasks} key={key}>
+            return <div className={classes.tasks} key={val.id}>
                 {val.completed
                     ? <CheckBoxIcon sx={{ color: grey[300] }} onClick={() => updateCompleteStatus(val.id, val.completed)} />
                     : <CheckBoxOutlineBlankIcon onClick={() => updateCompleteStatus(val.id, val.completed)} />

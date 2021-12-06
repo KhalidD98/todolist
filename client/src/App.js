@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import { makeStyles } from '@mui/styles';
 import AddTaskModal from './AddTask'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import FilterMenu from './Components/FilterMenu'
 import TextField from '@mui/material/TextField';
 import TaskList from "./Components/TaskList";
@@ -153,6 +151,8 @@ function App() {
         setFiltered(false)
         setFilteredList([])
         break
+      default:
+        console.error("Invalid Drop Down Option")
     }
   }
 
