@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '80vh',
+    height: '75vh',
     width: '60%',
     overflow: 'auto',
     scrollbarWidth: 'none',

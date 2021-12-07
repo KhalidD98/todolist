@@ -9,19 +9,28 @@ import { indigo } from '@mui/material/colors';
 
 const style = { // Style of modal
     position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 280,
+    height: 230,
     bgcolor: 'background.paper',
-    border: '1px solid #000',
-    boxShadow: 24,
+    borderRadius: '8px',
+    border: '1px solid rgba(0, 0, 0, 0.3)',
+    boxShadow: ' 0 3px 7px rgba(0, 0, 0, 0.3)',
     p: 4,
 };
 
 const useStyles = makeStyles({
     addTaskButton: {
         cursor: 'pointer',
+    },
+    textField: {
+        marginBottom: '1rem'
     }
 });
 
@@ -51,10 +60,11 @@ export default function AddTask({ addTask }) {
             >
                 <Box sx={style}>
                     <TextField
-                        onChange={(event) => { setTask(event.target.value); }}
+                        onChange={(event) => { setTask(event.target.value) }}
                         label="New Task"
                         variant="outlined"
                         value={task}
+                        sx={{ marginBottom: '2rem' }}
                     />
                     <Button onClick={handleClose} variant="contained">Create</Button>
                 </Box>
