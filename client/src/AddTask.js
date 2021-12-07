@@ -65,6 +65,11 @@ export default function AddTask({ addTask }) {
                         variant="outlined"
                         value={task}
                         sx={{ marginBottom: '2rem' }}
+                        onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                handleClose()
+                            }
+                        }}
                     />
                     <Button onClick={handleClose} variant="contained">Create</Button>
                 </Box>
