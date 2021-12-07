@@ -95,7 +95,7 @@ function App() {
 
   //----- Add new task -----//
   const addTask = (task) => {
-    axios.post("http://localhost:3001/create", {
+    axios.post("https://kd-todo-list.herokuapp.com/create", {
       task: task,
       completed: 0
     }).then((res) => { // Update local array with new task
@@ -105,14 +105,14 @@ function App() {
 
   //----- Get all tasks -----//
   const getTasks = () => {
-    axios.get("http://localhost:3001/todos").then((response) => {
+    axios.get("https://kd-todo-list.herokuapp.com/todos").then((response) => {
       setTaskList(response.data)
     })
   }
 
   //----- Delete task from db -----//
   const deleteTask = (id) => {
-    axios.post(`http://localhost:3001/delete`, { id: id })
+    axios.post(`https://kd-todo-list.herokuapp.com/delete`, { id: id })
     setTaskList(taskList.filter(k => k.id !== id))
   }
 
@@ -123,7 +123,7 @@ function App() {
       obj.id === id ? { ...obj, completed: !completed } : obj
     );
     setTaskList(newState)
-    axios.post(`http://localhost:3001/update`, { id: id, completed: !completed })
+    axios.post(`https://kd-todo-list.herokuapp.com/update`, { id: id, completed: !completed })
   }
 
   //----- editTask -----//
@@ -133,7 +133,7 @@ function App() {
       obj.id === id ? { ...obj, task: task } : obj
     );
     setTaskList(newState)
-    axios.post(`http://localhost:3001/edit`, { task: task, id: id })
+    axios.post(`https://kd-todo-list.herokuapp.com/edit`, { task: task, id: id })
   }
 
   //----- Filter the list -----//
