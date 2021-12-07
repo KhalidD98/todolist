@@ -6,6 +6,7 @@ import AddTaskModal from './AddTask'
 import FilterMenu from './Components/FilterMenu'
 import TextField from '@mui/material/TextField';
 import TaskList from "./Components/TaskList";
+import { styled } from '@mui/material/styles';
 
 const useStyles = makeStyles({
   addTaskModal: {
@@ -38,8 +39,15 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '3rem',
+    marginBottom: '2rem',
     marginTop: '1rem',
+  },
+  filterMenu: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '1rem',
   },
   circle: {
     height: '14rem',
@@ -79,6 +87,29 @@ const useStyles = makeStyles({
     backgroundImage: 'linear-gradient(to top right, #c171ed, #f62f59)',
     borderRadius: '50%',
     position: 'absolute',
+  },
+  textField: {
+    color: 'white',
+  },
+});
+
+const InputTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#9c9c9c',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#D8D8D8',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#D8D8D8',
+    },
+    '&:hover fieldset': {
+      borderColor: '#D8D8D8',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#D8D8D8',
+    },
   },
 });
 
@@ -165,17 +196,23 @@ function App() {
       <div className={classes.smallCircle2}></div>
 
       <div className={classes.searchField}>
-        <TextField
+        <InputTextField
+          label="Search for Task"
           onChange={(e) => setSearchTerm(e.target.value)}
-          label="Search for task..."
-          variant="standard"
+          InputLabelProps={{
+            style: { color: '#D8D8D8' },
+          }}
+          InputProps={{ className: classes.textField }}
         />
+      </div>
+
+      <div className={classes.filterMenu}>
+        <FilterMenu filterList={filterList} />
       </div>
 
       {/*----- List of Todos -----*/}
       <div className={classes.taskContainer}>
         <div className={classes.taskList}>
-          <FilterMenu filterList={filterList} />
           <TaskList
             editTask={editTask}
             deleteTask={deleteTask}

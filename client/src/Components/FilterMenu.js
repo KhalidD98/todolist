@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 export default function FilterMenu({ filterList }) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -27,9 +28,11 @@ export default function FilterMenu({ filterList }) {
     return (
         <div>
             <Button
+                startIcon={<FilterAltIcon />}
                 id="basic-button"
                 aria-controls="basic-menu"
                 aria-haspopup="true"
+                variant="contained"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
