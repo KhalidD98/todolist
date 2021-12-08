@@ -57,6 +57,7 @@ export default function EditTask({ editTask, id, oldTask }) {
                 <Box sx={style}>
                     <Input
                         sx={{ marginBottom: '2rem' }}
+                        inputProps={{ maxLength: 30 }}
                         onChange={(event) => { setTask(event.target.value); }}
                         placeholder={oldTask}
                         variant="outlined"

@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     height: '75vh',
-    width: '60%',
+    width: '100%',
     overflow: 'auto',
     scrollbarWidth: 'none',
     '&::-webkit-scrollbar': {
@@ -231,6 +231,7 @@ function App() {
       <div className={classes.searchField}>
         <InputTextField
           label="Search for Task"
+          inputProps={{ maxLength: 30 }}
           disabled={loading}
           onChange={(e) => setSearchTerm(e.target.value)}
           InputLabelProps={{

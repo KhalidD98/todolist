@@ -35,6 +35,9 @@ A simple TODO list app to keep track of tasks
 - Edit the task
 - Search for a task
 - Delete tasks
+- Loading Screen
+- Disabled button and text field during Loading
+- Max text length for adding, searching, or editing task
 
 ## Improvements
 Things I could improve with more time:
