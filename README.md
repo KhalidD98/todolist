@@ -52,4 +52,5 @@ The struggles I faced when creating this web application were:
 - Deploying both the front and back end of my application to seperate services and connecting the two
 - Creating the filter system, separating completed and pending tasks without calling the database every time a filter was selected. I resolved this by keeping a local version of the database and performed filters on that local version
 -   Designing the UI to be user friendly as to be very easy to use and understand
+- MySQL Connection keeps dropping, moving it into a pool is how I resolved that
 
