@@ -46,7 +46,7 @@ const useStyles = makeStyles({
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
-        maxWidth: '200px',
+        maxWidth: '60%',
     },
     editIcon: {
         paddingRight: '1rem',
