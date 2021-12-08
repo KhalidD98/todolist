@@ -12,13 +12,15 @@ app.use((req, res, next) => {
   next();
 });
 
-const db = mysql.createConnection({
-  connectionLimit: 10,
+const db = {
+  connectionLimit: 2,
   user: process.env.db_user,
   host: process.env.db_host,
   password: process.env.db_password,
   database: process.env.db_database,
-});
+}
+
+// mysql.createConnection()
 
 var pool = mysql.createPool(db);
 
