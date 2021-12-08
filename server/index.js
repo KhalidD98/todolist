@@ -13,6 +13,7 @@ app.use((req, res, next) => {
 });
 
 const db = mysql.createConnection({
+  connectionLimit: 10,
   user: process.env.db_user,
   host: process.env.db_host,
   password: process.env.db_password,
