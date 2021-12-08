@@ -27,9 +27,6 @@ const style = { // Style of modal
 const useStyles = makeStyles({
     editTaskButton: {
         cursor: 'pointer',
-    },
-    textField: {
-        marginBottom: '1rem'
     }
 });
 
@@ -58,7 +55,7 @@ export default function EditTask({ editTask, id }) {
             >
                 <Box sx={style}>
                     <TextField
-                        className={classes.textField}
+                        sx={{ marginBottom: '2rem' }}
                         onChange={(event) => { setTask(event.target.value); }}
                         label="Update Task"
                         variant="outlined"

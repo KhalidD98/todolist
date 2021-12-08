@@ -28,9 +28,6 @@ const style = { // Style of modal
 const useStyles = makeStyles({
     addTaskButton: {
         cursor: 'pointer',
-    },
-    textField: {
-        marginBottom: '1rem'
     }
 });
 
