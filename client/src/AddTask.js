@@ -67,6 +67,7 @@ export default function AddTask({ addTask }) {
                                 handleClose()
                             }
                         }}
+                        inputProps={{ maxLength: 30 }}
                     />
                     <Button onClick={handleClose} variant="contained">Create</Button>
                 </Box>
