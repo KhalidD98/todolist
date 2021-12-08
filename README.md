@@ -38,10 +38,10 @@ A simple TODO list app to keep track of tasks
 - Loading Screen
 - Disabled button and text field during Loading
 - Max text length for adding, searching, or editing task
+- Works on any screen size
 
 ## Improvements
 Things I could improve with more time:
-
  - Create a login system for users to have their own tasks
  - Create categories for tasks
  - Set priorities on tasks
