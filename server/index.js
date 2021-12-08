@@ -1,17 +1,11 @@
 require('dotenv').config()
-const express = require("express");
-const app = express();
-const mysql = require("mysql");
-const cors = require("cors");
+const express = require("express")
+const app = express()
+const mysql = require("mysql")
+const cors = require("cors")
 
-app.use(cors());
-app.use(express.json());
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", '*');
-//   res.header("Access-Control-Allow-Credentials", true);
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-// });
+app.use(cors())
+app.use(express.json())
 
 const db = mysql.createConnection({
   user: process.env.db_user,
@@ -68,5 +62,5 @@ app.post('/edit', (req, res) => {
 
 
 app.listen(process.env.PORT || 3001, () => {
-  console.log("Server is running");
-});
+  console.log("Server is running")
+})
