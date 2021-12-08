@@ -8,15 +8,10 @@ app.use(cors())
 app.use(express.json())
 
 app.use((req, res, next) => {
-  const corsWhitelist = [
-    'https://kd-todo-list.herokuapp.com/',
-  ];
-  if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  }
+  res.header('Access-Control-Allow-Origin', '*');
   next();
 });
+
 
 const db = mysql.createConnection({
   user: process.env.db_user,
