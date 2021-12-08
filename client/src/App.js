@@ -7,6 +7,7 @@ import FilterMenu from './Components/FilterMenu'
 import TextField from '@mui/material/TextField';
 import TaskList from "./Components/TaskList";
 import { styled } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const useStyles = makeStyles({
   addTaskModal: {
@@ -111,6 +112,13 @@ const useStyles = makeStyles({
   textField: {
     color: 'white',
   },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 'auto',
+    marginTop: '5rem',
+  }
 });
 
 const InputTextField = styled(TextField)({
@@ -139,6 +147,7 @@ function App() {
   const [filtered, setFiltered] = useState(false)
   const [filteredList, setFilteredList] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getTasks()
@@ -156,8 +165,10 @@ function App() {
 
   //----- Get all tasks -----//
   const getTasks = () => {
+    setLoading(true)
     axios.get("https://kd-todo-list.herokuapp.com/todos").then((response) => {
       setTaskList(response.data)
+      setLoading(false)
     })
   }
 
@@ -220,6 +231,7 @@ function App() {
       <div className={classes.searchField}>
         <InputTextField
           label="Search for Task"
+          disabled={loading}
           onChange={(e) => setSearchTerm(e.target.value)}
           InputLabelProps={{
             style: { color: '#D8D8D8' },
@@ -229,26 +241,31 @@ function App() {
       </div>
 
       <div className={classes.filterMenu}>
-        <FilterMenu filterList={filterList} />
+        <FilterMenu filterList={filterList} loading={loading} />
       </div>
 
       {/*----- List of Todos -----*/}
-      <div className={classes.taskContainer}>
-        <div className={classes.taskList}>
-          <TaskList
-            editTask={editTask}
-            deleteTask={deleteTask}
-            updateCompleteStatus={updateCompleteStatus}
-            list={filtered ? filteredList : taskList}
-            searchTerm={searchTerm}
-          />
+      {loading
+        ? <div className={classes.loading}> <CircularProgress color="secondary" /> </div>
+        : <div className={classes.taskContainer}>
+          <div className={classes.taskList}>
+            <TaskList
+              editTask={editTask}
+              deleteTask={deleteTask}
+              updateCompleteStatus={updateCompleteStatus}
+              list={filtered ? filteredList : taskList}
+              searchTerm={searchTerm}
+            />
+          </div>
         </div>
-      </div>
+      }
 
       {/* Add Task Button */}
-      <div className={classes.addTaskModal}>
-        <AddTaskModal addTask={addTask} />
-      </div>
+      {!loading &&
+        <div className={classes.addTaskModal}>
+          <AddTaskModal addTask={addTask} />
+        </div>
+      }
 
     </div >
   );

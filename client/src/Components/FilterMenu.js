@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
-export default function FilterMenu({ filterList }) {
+export default function FilterMenu({ filterList, loading }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -35,6 +35,7 @@ export default function FilterMenu({ filterList }) {
                 variant="contained"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
+                disabled={loading}
             >
                 Filter
             </Button>
