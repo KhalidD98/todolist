@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import { makeStyles } from '@mui/styles'
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
+import Input from '@mui/material/Input';
 
 const style = { // Style of modal
     position: 'absolute',
@@ -30,7 +31,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function EditTask({ editTask, id }) {
+export default function EditTask({ editTask, id, oldTask }) {
     const classes = useStyles();
     const [task, setTask] = useState("")
     const [open, setOpen] = useState(false)
@@ -54,14 +55,19 @@ export default function EditTask({ editTask, id }) {
                 aria-describedby="keep-mounted-modal-description"
             >
                 <Box sx={style}>
-                    <TextField
+                    <Input
                         sx={{ marginBottom: '2rem' }}
                         onChange={(event) => { setTask(event.target.value); }}
-                        label="Update Task"
+                        placeholder={oldTask}
                         variant="outlined"
                         value={task}
+                        onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                handleClose()
+                            }
+                        }}
                     />
-                    <Button onClick={handleClose} variant="contained">Create</Button>
+                    <Button onClick={handleClose} variant="contained">Update</Button>
                 </Box>
             </Modal>
         </div>

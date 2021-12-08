@@ -75,7 +75,7 @@ export default function TaskList({ editTask, deleteTask, updateCompleteStatus, l
                     : <Typography className={classes.taskText}>{val.task}</Typography>
                 }
                 <div className={classes.editIcon}>
-                    <EditTask editTask={editTask} id={val.id} />
+                    <EditTask editTask={editTask} id={val.id} oldTask={val.task} />
                 </div>
                 <DeleteIcon onClick={() => deleteTask(val.id)} />
             </div>

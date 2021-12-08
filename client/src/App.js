@@ -62,8 +62,28 @@ const useStyles = makeStyles({
     height: '6rem',
     width: '6rem',
     zIndex: '-1000',
-    left: '70%',
-    top: '10%',
+    left: '68%',
+    top: '15%',
+    backgroundImage: 'linear-gradient(to bottom right, #f64f59, #c471ed)',
+    borderRadius: '50%',
+    position: 'absolute',
+  },
+  circle3: {
+    height: '6rem',
+    width: '6rem',
+    zIndex: '-1000',
+    left: '18%',
+    top: '80%',
+    backgroundImage: 'linear-gradient(to bottom right, #f64f59, #c471ed)',
+    borderRadius: '50%',
+    position: 'absolute',
+  },
+  circle4: {
+    height: '6rem',
+    width: '6rem',
+    zIndex: '-1000',
+    left: '88%',
+    top: '60%',
     backgroundImage: 'linear-gradient(to bottom right, #f64f59, #c471ed)',
     borderRadius: '50%',
     position: 'absolute',
@@ -83,7 +103,7 @@ const useStyles = makeStyles({
     width: '2rem',
     zIndex: '-1000',
     left: '60%',
-    top: '51%',
+    top: '41%',
     backgroundImage: 'linear-gradient(to top right, #c171ed, #f62f59)',
     borderRadius: '50%',
     position: 'absolute',
@@ -192,6 +212,8 @@ function App() {
 
       <div className={classes.circle}></div>
       <div className={classes.circle2}></div>
+      <div className={classes.circle3}></div>
+      <div className={classes.circle4}></div>
       <div className={classes.smallCircle}></div>
       <div className={classes.smallCircle2}></div>
 
