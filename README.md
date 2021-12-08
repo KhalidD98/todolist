@@ -1,4 +1,4 @@
-# KD's TodoList Application
+# KD's Todo-List Application
 
 A simple TODO list app to keep track of tasks
 
