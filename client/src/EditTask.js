@@ -8,17 +8,29 @@ import TextField from '@mui/material/TextField';
 
 const style = { // Style of modal
     position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 280,
+    height: 230,
     bgcolor: 'background.paper',
-    border: '1px solid #000',
-    boxShadow: 24,
+    borderRadius: '8px',
+    border: '1px solid rgba(0, 0, 0, 0.3)',
+    boxShadow: ' 0 3px 7px rgba(0, 0, 0, 0.3)',
     p: 4,
 };
 
 const useStyles = makeStyles({
+    editTaskButton: {
+        cursor: 'pointer',
+    },
+    textField: {
+        marginBottom: '1rem'
+    }
 });
 
 export default function EditTask({ editTask, id }) {
@@ -36,7 +48,7 @@ export default function EditTask({ editTask, id }) {
 
     return (
         <div>
-            <EditIcon onClick={handleOpen} className={classes.editIcon} />
+            <EditIcon className={classes.editTaskButton} onClick={handleOpen} className={classes.editIcon} />
             <Modal
                 keepMounted
                 open={open}
@@ -46,6 +58,7 @@ export default function EditTask({ editTask, id }) {
             >
                 <Box sx={style}>
                     <TextField
+                        className={classes.textField}
                         onChange={(event) => { setTask(event.target.value); }}
                         label="Update Task"
                         variant="outlined"
