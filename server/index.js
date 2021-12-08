@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const db = {
+const db_data = {
   connectionLimit: 2,
   user: process.env.db_user,
   host: process.env.db_host,
@@ -22,9 +22,9 @@ const db = {
 
 // mysql.createConnection()
 
-var pool = mysql.createPool(db);
+var db = mysql.createPool(db_data);
 
-pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+db.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   if (error) throw error;
   console.log('The solution is: ', results[0].solution);
 });
